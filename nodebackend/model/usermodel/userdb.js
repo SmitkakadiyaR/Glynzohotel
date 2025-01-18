@@ -47,4 +47,6 @@ async function findUserById(userId) {
     return rows; 
     
 }
+// hellow
+
 module.exports = { checkIfUserExists, registerUser,getUserByEmail,findAllUser,findUserById };
