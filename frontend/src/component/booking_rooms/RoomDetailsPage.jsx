@@ -8,6 +8,7 @@ const RoomDetailsPage = () => {
   const navigate = useNavigate(); // Access the navigate function to navigate
   const { roomId } = useParams(); // Get room ID from URL parameters
   const [roomDetails, setRoomDetails] = useState(null);
+  const [image, setImage] = useState(null);
   const [isLoading, setIsLoading] = useState(true); // Track loading state
   const [error, setError] = useState(null); // Track any errors
   const [checkInDate, setCheckInDate] = useState(null); // State variable for check-in date
@@ -26,12 +27,14 @@ const RoomDetailsPage = () => {
     const fetchData = async () => {
       try {
 
-        console.log("userrrrrr iddddddddddddddddddddddddddddddddddddddddddddddddd",roomId);
+        // console.log("userrrrrr iddddddddddddddddddddddddddddddddddddddddddddddddd",roomId);
         setIsLoading(true); // Set loading state to true
         const response = await ApiService.getRoomById(roomId);
         setRoomDetails(response.room);
+        setImage(response.imageUrl);
+        // console.log(image);
         const userProfile = await ApiService.getUserProfile();
-        console.log("useeeeeeeeeeeeeeeeeeeeeeeeerd",userProfile)
+        // console.log("useeeeeeeeeeeeeeeeeeeeeeeeerd",userProfile)
 
         setUserId(userProfile.id);
       } catch (error) {
@@ -139,7 +142,7 @@ const RoomDetailsPage = () => {
     return <p className='room-detail-loading'>Room not found.</p>;
   }
 
-  const { room_type, room_price, room_photo_url, room_description } = roomDetails;
+  const { room_type, room_price, imageUrl, room_description } = roomDetails;
 
   return (
     <div className="room-details-booking">
@@ -155,7 +158,7 @@ const RoomDetailsPage = () => {
       )}
       <h2>Room Details</h2>
       <br />
-      <img src={room_photo_url} alt={room_type} className="room-details-image" />
+      <img src={image} alt={room_type} className="room-details-image" />
       <div className="room-details-info">
         <h3>{room_type}</h3>
         <p>Price: ${room_price} / night</p>

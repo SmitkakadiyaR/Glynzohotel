@@ -6,7 +6,7 @@ const authRoute=require('./routes/authRoutes');
 const roomsRoute=require('./routes/roomsRoutes');
 const userRoute=require('./routes/userRoutes');
 const bookingRoute=require('./routes/bookingsRoutes');
-
+const path = require('path');
 const  cors =require('cors') ;
 const app = express();
 
@@ -19,6 +19,8 @@ const PORT = 4040;
 app.use(bodyParser.json());
 // Enable CORS for all origins
 app.use(cors());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 // Register User Endpoint
 app.use(authRoute);

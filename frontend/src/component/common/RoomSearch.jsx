@@ -29,11 +29,23 @@ const RoomSearch = ({ handleSearchResult }) => {
       setError('');
     }, timeout);
   };
+  const normalizeDate = (date) => {
+    const normalized = new Date(date);
+    normalized.setHours(0, 0, 0, 0);
+    return normalized;
+  };
 
   /**THis is going to be used to fetch avaailabe rooms from database base on seach data that'll be passed in */
   const handleInternalSearch = async () => {
     if (!startDate || !endDate || !roomType) {
       showError('Please select all fields');
+      return false;
+    }
+    const normalizedStartDate = normalizeDate(startDate);
+    const normalizedEndDate = normalizeDate(endDate);
+
+    if (normalizedStartDate >= normalizedEndDate) {
+      showError('Check-out date must be later than the check-in date.');
       return false;
     }
     try {

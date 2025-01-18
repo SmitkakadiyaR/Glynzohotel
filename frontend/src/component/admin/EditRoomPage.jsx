@@ -65,6 +65,7 @@ const EditRoomPage = () => {
             }
 
             const result = await ApiService.updateRoom(roomId, formData);
+            console.log(result,"------------");
             if (result.statusCode === 200) {
                 setSuccess('Room updated successfully.');
                 

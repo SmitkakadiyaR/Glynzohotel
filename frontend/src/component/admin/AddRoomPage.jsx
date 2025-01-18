@@ -24,6 +24,8 @@ const AddRoomPage = () => {
             try {
                 const types = await ApiService.getRoomTypes();
                 setRoomTypes(types);
+
+                console.log(types,"----------------------------------")
             } catch (error) {
                 console.error('Error fetching room types:', error.message);
             }
@@ -93,7 +95,7 @@ const AddRoomPage = () => {
                 setTimeout(() => {
                     setSuccess('');
                     navigate('/admin/manage-rooms');
-                }, 3000);
+                }, 100);
             }
         } catch (error) {
             setError(error.response?.data?.message || error.message);
@@ -122,9 +124,12 @@ const AddRoomPage = () => {
                     <label>Room Type</label>
                     <select value={roomDetails.roomType} onChange={handleRoomTypeChange}>
                         <option value="">Select a room type</option>
-                        {roomTypes.map(type => (
+                        {/* {roomTypes.map(type => (
                             <option key={type} value={type}>{type}</option>
-                        ))}
+                        ))} */}
+                       {roomTypes.map((type, index) => (
+                       <option key={index} value={type.room_type}>{type.room_type}</option>
+                       ))}
                         <option value="new">Other (please specify)</option>
                     </select>
                     {newRoomType && (

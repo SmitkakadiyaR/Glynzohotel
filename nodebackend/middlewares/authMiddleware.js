@@ -3,10 +3,10 @@ const jwtConfig = require('../config/jwtconfig'); // Path to your JWT secret con
 
 // Middleware to verify the JWT token
 const authorize = (req, res, next) => {
-    console.log("reqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",req.headers);
+    // console.log("reqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq",req.headers);
     const token = req.headers['authorization']; // Get the token from Authorization header
 
-    console.log("user token ________________________",token);
+    // console.log("user token ________________________",token);
 
     if (!token) {
         return res.status(403).json({ message: 'No token provided, access denied' });

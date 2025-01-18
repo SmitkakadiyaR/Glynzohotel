@@ -41,4 +41,10 @@ async function findAllUser() {
     const rows = await query(sql);
     return rows;  // Return the user data if found
 }
-module.exports = { checkIfUserExists, registerUser,getUserByEmail,findAllUser };
+async function findUserById(userId) {
+    const sql='select * from users where id=?'
+    const [rows] = await db.query(sql, [userId]);
+    return rows; 
+    
+}
+module.exports = { checkIfUserExists, registerUser,getUserByEmail,findAllUser,findUserById };

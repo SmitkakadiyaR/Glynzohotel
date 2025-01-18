@@ -69,11 +69,12 @@ const ManageRoomPage = () => {
           <label>Filter by Room Type:</label>
           <select value={selectedRoomType} onChange={handleRoomTypeChange}>
             <option value="">All</option>
-            {roomTypes.map((type) => (
-              <option key={type} value={type}>
+            {/* {roomTypes.map((type,index) => (
+              <option key={index} value={type}>
                 {type}
               </option>
-            ))}
+            ))} */}
+            
           </select>
           <button className='add-room-button' onClick={() => navigate('/admin/add-room')}>
             Add Room

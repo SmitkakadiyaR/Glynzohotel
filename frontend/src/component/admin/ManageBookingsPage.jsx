@@ -17,6 +17,7 @@ const ManageBookingsPage = () => {
                 const response = await ApiService.getAllBookings();
                 const allBookings = response.bookingList;
                 setBookings(allBookings);
+                console.log("allBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBbooooooooooooooooooooookibng",allBookings)
                 setFilteredBookings(allBookings);
             } catch (error) {
                 console.error('Error fetching bookings:', error.message);
@@ -68,13 +69,13 @@ const ManageBookingsPage = () => {
             <div className="booking-results">
                 {currentBookings.map((booking) => (
                     <div key={booking.id} className="booking-result-item">
-                        <p><strong>Booking Code:</strong> {booking.bookingConfirmationCode}</p>
-                        <p><strong>Check In Date:</strong> {booking.checkInDate}</p>
-                        <p><strong>Check out Date:</strong> {booking.checkOutDate}</p>
-                        <p><strong>Total Guests:</strong> {booking.totalNumOfGuest}</p>
+                        <p><strong>Booking Code:</strong> {booking.booking_confirmation_code}</p>
+                        <p><strong>Check In Date:</strong> {booking.check_in_date}</p>
+                        <p><strong>Check out Date:</strong> {booking.check_out_date}</p>
+                        <p><strong>Total Guests:</strong> {booking.total_num_of_guest}</p>
                         <button
                             className="edit-room-button"
-                            onClick={() => navigate(`/admin/edit-booking/${booking.bookingConfirmationCode}`)}
+                            onClick={() => navigate(`/admin/edit-booking/${booking.booking_confirmation_code}`)}
                         >Manage Booking</button>
                     </div>
                 ))}

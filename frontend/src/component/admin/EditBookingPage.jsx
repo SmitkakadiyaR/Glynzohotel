@@ -15,7 +15,8 @@ const EditBookingPage = () => {
         const fetchBookingDetails = async () => {
             try {
                 const response = await ApiService.getBookingByConfirmationCode(bookingCode);
-                setBookingDetails(response.booking);
+                console.log(response.bookingDetails);
+                setBookingDetails(response.bookingDetails);
             } catch (error) {
                 setError(error.message);
             }
@@ -38,11 +39,11 @@ const EditBookingPage = () => {
                 setTimeout(() => {
                     setSuccessMessage('');
                     navigate('/admin/manage-bookings');
-                }, 3000);
+                }, 1000);
             }
         } catch (error) {
             setError(error.response?.data?.message || error.message);
-            setTimeout(() => setError(''), 5000);
+            setTimeout(() => setError(''), 1000);
         }
     };
 
@@ -54,21 +55,21 @@ const EditBookingPage = () => {
             {bookingDetails && (
                 <div className="booking-details">
                     <h3>Booking Details</h3>
-                    <p>Confirmation Code: {bookingDetails.bookingConfirmationCode}</p>
-                    <p>Check-in Date: {bookingDetails.checkInDate}</p>
+                    <p>Confirmation Code: {bookingDetails.booking_confirmation_code}</p>
+                    <p>Check-in Date: {bookingDetails.check_in_date}</p>
                     <p>Check-out Date: {bookingDetails.checkOutDate}</p>
-                    <p>Num Of Adults: {bookingDetails.numOfAdults}</p>
-                    <p>Num Of Children: {bookingDetails.numOfChildren}</p>
-                    <p>Guest Email: {bookingDetails.guestEmail}</p>
+                    <p>Num Of Adults: {bookingDetails.num_of_adults}</p>
+                    <p>Num Of Children: {bookingDetails.num_of_children}</p>
+                    <p>Guest Email: {bookingDetails.user_email}</p>
 
                     <br />
                     <hr />
                     <br />
                     <h3>Booker Detials</h3>
                     <div>
-                        <p> Name: {bookingDetails.user.name}</p>
-                        <p> Email: {bookingDetails.user.email}</p>
-                        <p> Phone Number: {bookingDetails.user.phoneNumber}</p>
+                        <p> Name: {bookingDetails.user_name}</p>
+                        <p> Email: {bookingDetails.user_email}</p>
+                        <p> Phone Number: {bookingDetails.user_phone}</p>
                     </div>
 
                     <br />
@@ -76,10 +77,10 @@ const EditBookingPage = () => {
                     <br />
                     <h3>Room Details</h3>
                     <div>
-                        <p> Room Type: {bookingDetails.room.roomType}</p>
-                        <p> Room Price: ${bookingDetails.room.roomPrice}</p>
-                        <p> Room Description: {bookingDetails.room.roomDescription}</p>
-                        <img src={bookingDetails.room.roomPhotoUrl} alt="" sizes="" srcSet="" />
+                        <p> Room Type: {bookingDetails.room_type}</p>
+                        <p> Room Price: ${bookingDetails.room_price}</p>
+                        <p> Room Description: {bookingDetails.room_description}</p>
+                        <img src={bookingDetails.room_photo_url} alt="" sizes="" srcSet="" />
                     </div>
                     <button
                         className="acheive-booking"
